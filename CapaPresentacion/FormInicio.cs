@@ -81,7 +81,7 @@ namespace CapaPresentacion
 
         private void icmregistrar_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(menumantenedor, new frmventas());
+            AbrirFormulario(menumantenedor, new frmventas(usuarioactual));
         }
 
         private void icmdetalle_Click(object sender, EventArgs e)

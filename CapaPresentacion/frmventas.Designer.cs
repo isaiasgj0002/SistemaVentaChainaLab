@@ -101,6 +101,8 @@
             this.txtpagacon.Size = new System.Drawing.Size(100, 26);
             this.txtpagacon.TabIndex = 20;
             this.txtpagacon.Text = "0";
+            this.txtpagacon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpagacon_KeyDown);
+            this.txtpagacon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpagacon_KeyPress);
             // 
             // dataGridView1
             // 
@@ -120,6 +122,8 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(874, 335);
             this.dataGridView1.TabIndex = 18;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             // 
             // IdPlato
             // 
@@ -178,6 +182,7 @@
             this.btnagregar.Text = "Agregar";
             this.btnagregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnagregar.UseVisualStyleBackColor = true;
+            this.btnagregar.Click += new System.EventHandler(this.btnagregar_Click);
             // 
             // nupcantidad
             // 
@@ -248,6 +253,7 @@
             this.txxprevent.Name = "txxprevent";
             this.txxprevent.Size = new System.Drawing.Size(205, 26);
             this.txxprevent.TabIndex = 8;
+            this.txxprevent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txxprevent_KeyPress);
             // 
             // txtidplato
             // 
