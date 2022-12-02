@@ -83,6 +83,7 @@
             this.btnregistrarguardarcompra.Text = "Registrar";
             this.btnregistrarguardarcompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnregistrarguardarcompra.UseVisualStyleBackColor = true;
+            this.btnregistrarguardarcompra.Click += new System.EventHandler(this.btnregistrarguardarcompra_Click);
             // 
             // label11
             // 

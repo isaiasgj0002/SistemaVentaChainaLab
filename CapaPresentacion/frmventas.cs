@@ -1,4 +1,5 @@
 ﻿using CapaEntidad;
+using CapaNegocio;
 using CapaPresentacion.Modales;
 using CapaPresentacion.Utilidades;
 using System;
@@ -248,6 +249,68 @@ namespace CapaPresentacion
             if(e.KeyData == Keys.Enter)
             {
                 calcularVuelto();
+            }
+        }
+
+        private void btnregistrarguardarcompra_Click(object sender, EventArgs e)
+        {
+            calcularVuelto();
+            if (Convert.ToInt32(txtidcliente.Text) == 0)
+            {
+                MessageBox.Show("Error: Debe seleccionar un cliente", "Error al registrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (dataGridView1.Rows.Count < 1)
+            {
+                MessageBox.Show("Error: Debe seleccionar al menos un plato", "Error al registrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DataTable DetalleVenta = new DataTable();
+            DetalleVenta.Columns.Add("IdPlato", typeof(int));
+            DetalleVenta.Columns.Add("PrecioVenta", typeof(decimal));
+            DetalleVenta.Columns.Add("Cantidad", typeof(int));
+            DetalleVenta.Columns.Add("Subtotal", typeof(decimal));
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DetalleVenta.Rows.Add(new object[]
+                {
+                    Convert.ToInt32(row.Cells["IdPlato"].Value.ToString()),
+                    row.Cells["Precio"].Value.ToString(),
+                    row.Cells["Cantidad"].Value.ToString(),
+                    row.Cells["Subtotal"].Value.ToString()
+                });
+            }
+            int idcorrelativo = new CN_Venta().obtenercorrelativo();
+            string numerodocumento = string.Format("{0:00000}", idcorrelativo);
+            Venta oVenta = new Venta()
+            {
+                oUsuario = new Usuario() { idUsuario = _usuario.idUsuario },
+                idcliente = Convert.ToInt32(txtidcliente.Text),
+                nombrecliente = txtnombrecliente.Text,
+                tipodocumento = ((OpcionesCombo)cbdoc.SelectedItem).texto,
+                numerodocumento = numerodocumento,
+                montopago = Convert.ToDecimal(txtpagacon.Text),
+                montocambio = Convert.ToDecimal(txtcambio.Text),
+                montototal = Convert.ToDecimal(txttotal.Text)
+            };
+            string mensaje = string.Empty;
+            bool respuesta = new CN_Venta().Registrar(oVenta, DetalleVenta, out mensaje);
+            if (respuesta)
+            {
+                var result = MessageBox.Show("Numero de venta generado: \n" + numerodocumento + "\n\n¿Desea copiar al portapapeles?", "Satisfactorio", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    Clipboard.SetText(numerodocumento);
+                }
+                txtidcliente.Text = "0";
+                txtnombrecliente.Text = "";
+                txtnombreplato.Text = "";
+                dataGridView1.Rows.Clear();
+                calcularTotal();
+            }
+            else
+            {
+                MessageBox.Show("Error: " + mensaje, "Error al registrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

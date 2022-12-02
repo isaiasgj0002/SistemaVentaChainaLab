@@ -97,6 +97,7 @@
     <Compile Include="CN_Proveedores.cs" />
     <Compile Include="CN_Rol.cs" />
     <Compile Include="CN_Usuarios.cs" />
+    <Compile Include="CN_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
