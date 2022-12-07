@@ -120,5 +120,10 @@ namespace CapaPresentacion
                 }
             }
         }
+
+        private void frmdetallecompras_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

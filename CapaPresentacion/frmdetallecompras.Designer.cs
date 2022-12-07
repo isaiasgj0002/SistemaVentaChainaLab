@@ -359,6 +359,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmdetallecompras";
             this.Text = "frmdetallecompras";
+            this.Load += new System.EventHandler(this.frmdetallecompras_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);

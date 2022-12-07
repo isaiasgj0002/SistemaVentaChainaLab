@@ -20,5 +20,15 @@ namespace CapaNegocio
         {
             return objcd_venta.registrar(obj, DetalleVenta, out Mensaje);
         }
+        public Venta ObtenerVenta(string numero)
+        {
+            Venta oVenta = objcd_venta.ObtenerVenta(numero);
+            if (oVenta.idventa != 0)
+            {
+                List<DetalleVenta> oDetalleVenta = objcd_venta.ObtenerDetalleVenta(oVenta.idventa);
+                oVenta.oDetalleVenta = oDetalleVenta;
+            }
+            return oVenta;
+        }
     }
 }
