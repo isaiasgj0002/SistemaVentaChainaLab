@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -169,7 +170,8 @@ namespace CapaPresentacion
                     txtcod.Text = dataGridView1.Rows[indice].Cells["Codigo"].Value.ToString();
                     txtnombres.Text = dataGridView1.Rows[indice].Cells["Nombre"].Value.ToString();
                     txtdesc.Text = dataGridView1.Rows[indice].Cells["Descripcion"].Value.ToString();
-       
+                    textBox1.Text = dataGridView1.Rows[indice].Cells["Stock"].Value.ToString();
+
                     foreach (OpcionesCombo oc in cbcate.Items)
                     {
                         if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dataGridView1.Rows[indice].Cells["IdCategoria"].Value))
@@ -328,6 +330,31 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("Error: " + "No hay datos disponibles para exportar", "No se pudo exportar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Text != "" && txtcod.Text!="")
+            {
+                try
+                {
+                    SqlConnection StrifoConexion = new SqlConnection("Data Source=(local);Initial Catalog=db_chainalab;Integrated Security=True");
+                    StrifoConexion.Open();
+                    SqlCommand cmd = new SqlCommand("update PRODUCTOS set Stock = @stock where Codigo = @codigo", StrifoConexion);
+                    cmd.Parameters.AddWithValue("@stock", Convert.ToInt32(textBox1.Text));
+                    cmd.Parameters.AddWithValue("@codigo", txtcod.Text);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Se actualizo el stock del producto");
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un producto para actualizar su stock");
             }
         }
     }

@@ -49,12 +49,14 @@
             this.contenedor = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lbluser = new System.Windows.Forms.Label();
+            this.menureportes = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuusuario,
@@ -63,6 +65,7 @@
             this.menucompras,
             this.menuproveedores,
             this.menuacercade,
+            this.menureportes,
             this.menuclientes});
             this.menuStrip1.Location = new System.Drawing.Point(0, 88);
             this.menuStrip1.Name = "menuStrip1";
@@ -264,6 +267,7 @@
             // 
             this.menuStrip2.AutoSize = false;
             this.menuStrip2.BackColor = System.Drawing.Color.IndianRed;
+            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
@@ -315,6 +319,21 @@
             this.lbluser.TabIndex = 5;
             this.lbluser.Text = "lblusuario";
             // 
+            // menureportes
+            // 
+            this.menureportes.AutoSize = false;
+            this.menureportes.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.menureportes.IconChar = FontAwesome.Sharp.IconChar.FolderBlank;
+            this.menureportes.IconColor = System.Drawing.Color.Black;
+            this.menureportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menureportes.IconSize = 30;
+            this.menureportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menureportes.Name = "menureportes";
+            this.menureportes.Size = new System.Drawing.Size(182, 69);
+            this.menureportes.Text = "Reportes";
+            this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
+            // 
             // FormInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -361,6 +380,7 @@
         private FontAwesome.Sharp.IconMenuItem icmdetallecompra;
         private FontAwesome.Sharp.IconMenuItem imcplatos;
         private System.Windows.Forms.ToolStripMenuItem submenunegocio;
+        private FontAwesome.Sharp.IconMenuItem menureportes;
     }
 }
 
